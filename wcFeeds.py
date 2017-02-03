@@ -29,17 +29,13 @@ def getFacebookFeeds(user_id,access_token,num_feeds):
 if __name__ == '__main__':
 	feeds = getFacebookFeeds(user_id,access_token,50)
 	has_next_page = True
-	#f = codecs.open('wordcloud.txt','w',encoding='utf8')
 	t = json.dumps(feeds, ensure_ascii=False)
 
 	info = json.loads(t)
 	strC = u""
-	for test in info['data']:
-		if 'message' in test:
-			strC = strC + test['message']
-	
-
-	#info = json.loads(t)
+	for status in info['data']:
+		if 'message' in status:
+			strC = strC + status['message']
 
 	wordcloud = WordCloud(width=1600,height=800).generate(strC)
 
